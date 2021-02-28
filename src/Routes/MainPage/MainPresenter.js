@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from '../../Components/Button';
 import MusicBox from '../../Components/MusicBox';
 
 //Start Pade
@@ -46,6 +47,7 @@ const ButtonBox = styled.div`
     margin: 60px 0;
 `;
 
+/*
 const Btn = styled.button`
     background-color: ${props => props.theme.darkBlueColor};
     border-radius: 4px;
@@ -56,6 +58,7 @@ const Btn = styled.button`
     color: ${props => props.theme.lightBlueColor};
     padding: 10px;
 `;
+*/
 
 const MusicListBox = styled.div`
     ${props => props.theme.greyBox};
@@ -120,9 +123,13 @@ const SelectedMusic = styled.div`
 export default ({
     action,
     setAction,
-    onSubmit,
+    startSearch,
     musicL,
-    setMusicL
+    setMusicL,
+    handleSearchFormSubmit,
+    songName,
+    setSongName,
+    handleValueChange
 }) => {
 
     return (
@@ -143,8 +150,8 @@ export default ({
                     </Caption>
                 </CaptionBox>
                 <ButtonBox>
-                    <form onSubmit={onSubmit} >
-                        <Btn>시작하기</Btn>
+                    <form onSubmit={startSearch} >
+                        <Button text='시작하기' />
                     </form>
                 </ButtonBox>
                 </>
@@ -157,17 +164,22 @@ export default ({
                         <MusicSearchBox>
                             <TitleBox>음악 검색</TitleBox>
                             <InputBox>
-                                <Input placeholder={'노래 제목'} />
+                                <form onSubmit={handleSearchFormSubmit}>
+                                    <Input 
+                                        placeholder={'노래 제목'}
+                                        type='text'
+                                        name='songName'
+                                        value={songName}
+                                        onChange={handleValueChange}
+                                    />
+                                    <Button
+                                        type='submit'
+                                        text='검색'
+                                    />
+                                </form>
                             </InputBox>
                             <MusicListBox>
-                                {musicL.map(music => (
-                                    <MusicBox 
-                                        id={music.id} 
-                                        key={music.id}
-                                        artists={music.artists}
-                                        songName={music.name}
-                                    />
-                                ))}
+                                <div>temp</div>
                             </MusicListBox>
                         </MusicSearchBox>
                         <SelectedMusicBox>
@@ -194,7 +206,7 @@ export default ({
                         </SelectedMusicBox>
                         <ButtonBox>
                             <form>
-                                <Btn>추천받기</Btn>
+                                <Button text='결과보기' />
                             </form>
                         </ButtonBox>
                         </>

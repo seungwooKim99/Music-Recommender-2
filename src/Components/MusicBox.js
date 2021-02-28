@@ -15,7 +15,6 @@ export default ({
     artists,
     songName
 }) => {
-    console.log(songName);
     return (
         <Container>
             <span>{artists}</span>
