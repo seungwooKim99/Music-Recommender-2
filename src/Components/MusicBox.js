@@ -13,12 +13,13 @@ const Container = styled.div`
 export default ({
     id,
     artists,
-    name
+    songName
 }) => {
+    console.log(songName);
     return (
         <Container>
             <span>{artists}</span>
-            <span>{name}</span>
+            <span>{songName}</span>
         </Container>
     );
 };
