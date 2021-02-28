@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MainPresenter from './MainPresenter';
+import {post} from 'axios';
 
 export default () => {
     const [action, setAction] = useState('start');
@@ -21,11 +22,15 @@ export default () => {
     };
     */
 
+    const changeStateToSearch = () => {
+        setAction('search');
+    }
+
     const startSearch = () => {
-        const url = '/api/customers';
+        const url = '/api/musicL';
         const formData = new FormData();
         formData.append('songName', songName);
-        return postMessage(url, formData);
+        return post(url, formData);
     }
 
     const handleSearchFormSubmit = (e) => {
@@ -70,6 +75,7 @@ export default () => {
             songName={songName}
             setSongName={setSongName}
             handleValueChange={handleValueChange}
+            changeStateToSearch={changeStateToSearch}
         />
     );
 };

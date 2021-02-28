@@ -129,7 +129,8 @@ export default ({
     handleSearchFormSubmit,
     songName,
     setSongName,
-    handleValueChange
+    handleValueChange,
+    changeStateToSearch
 }) => {
 
     return (
@@ -150,71 +151,62 @@ export default ({
                     </Caption>
                 </CaptionBox>
                 <ButtonBox>
-                    <form onSubmit={startSearch} >
-                        <Button text='시작하기' />
+                    <form onSubmit={changeStateToSearch} >
+                        <Button onClick={changeStateToSearch} text='시작하기' />
                     </form>
                 </ButtonBox>
                 </>
             )}
             {action === "search" && (
                 <>
-                    {console.log(musicL)}
-                    {musicL ? (
-                        <>
-                        <MusicSearchBox>
-                            <TitleBox>음악 검색</TitleBox>
-                            <InputBox>
-                                <form onSubmit={handleSearchFormSubmit}>
-                                    <Input 
-                                        placeholder={'노래 제목'}
-                                        type='text'
-                                        name='songName'
-                                        value={songName}
-                                        onChange={handleValueChange}
-                                    />
-                                    <Button
-                                        type='submit'
-                                        text='검색'
-                                    />
-                                </form>
-                            </InputBox>
-                            <MusicListBox>
-                                <div>temp</div>
-                            </MusicListBox>
-                        </MusicSearchBox>
-                        <SelectedMusicBox>
-                            <TitleBox>
-                                선택한 노래
-                            </TitleBox>
-                            <SelectedMusicList>
-                                <SelectedMusic>
-                                    a
-                                </SelectedMusic>
-                                <SelectedMusic>
-                                    b
-                                </SelectedMusic>
-                                <SelectedMusic>
-                                    c
-                                </SelectedMusic>
-                                <SelectedMusic>
-                                    d
-                                </SelectedMusic>
-                                <SelectedMusic>
-                                    e
-                                </SelectedMusic>
-                            </SelectedMusicList>
-                        </SelectedMusicBox>
-                        <ButtonBox>
-                            <form>
-                                <Button text='결과보기' />
-                            </form>
-                        </ButtonBox>
-                        </>
-                    ) : (
-                        <>
-                        Loading Music List...
-                        </>
-                    )}
+                <MusicSearchBox>
+                    <TitleBox>음악 검색</TitleBox>
+                    <InputBox>
+                        <form onSubmit={handleSearchFormSubmit}>
+                            <Input 
+                                placeholder={'노래 제목'}
+                                type='text'
+                                name='songName'
+                                value={songName}
+                                onChange={handleValueChange}
+                            />
+                            <Button
+                                type='submit'
+                                text='검색'
+                            />
+                        </form>
+                    </InputBox>
+                    <MusicListBox>
+                        <div>temp</div>
+                    </MusicListBox>
+                </MusicSearchBox>
+                <SelectedMusicBox>
+                    <TitleBox>
+                        선택한 노래
+                    </TitleBox>
+                    <SelectedMusicList>
+                        <SelectedMusic>
+                            a
+                        </SelectedMusic>
+                        <SelectedMusic>
+                            b
+                        </SelectedMusic>
+                        <SelectedMusic>
+                            c
+                        </SelectedMusic>
+                        <SelectedMusic>
+                            d
+                        </SelectedMusic>
+                        <SelectedMusic>
+                            e
+                        </SelectedMusic>
+                    </SelectedMusicList>
+                </SelectedMusicBox>
+                <ButtonBox>
+                    <form>
+                        <Button text='결과보기' />
+                    </form>
+                </ButtonBox>
                 </>
             )}
         </Wrapper>
