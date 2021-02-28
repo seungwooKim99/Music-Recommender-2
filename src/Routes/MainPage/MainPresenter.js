@@ -1,13 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '../../Components/Button';
+import Footer from '../../Components/Footer';
+import Header from '../../Components/Header';
+import Input from '../../Components/Input';
 import MusicBox from '../../Components/MusicBox';
 
 //Start Pade
 const Wrapper = styled.div`
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100%;
 `;
 
+/*
 const TitleBox = styled.div`
     width: 100%;
     display: flex;
@@ -17,6 +27,7 @@ const TitleBox = styled.div`
     font-size: 16px;
     font-weight: 400;
 `;
+*/
 
 const Title = styled.span`
     font-size: 36px;
@@ -39,6 +50,7 @@ const Caption = styled.span`
     margin: 1px 0;
 `;
 
+/*
 const ButtonBox = styled.div`
     width: 100%;
     display: flex;
@@ -46,7 +58,7 @@ const ButtonBox = styled.div`
     align-content: center;
     margin: 60px 0;
 `;
-
+*/
 /*
 const Btn = styled.button`
     background-color: ${props => props.theme.darkBlueColor};
@@ -71,6 +83,7 @@ const MusicListBox = styled.div`
 const MusicSearchBox = styled.div`
     display: flex;
     flex-direction: column;
+    text-align: center;
 `;
 
 /*
@@ -81,12 +94,15 @@ const MusicBox = styled.div`
 `;
 */
 
+//Search Page
+
 const InputBox = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
 `;
 
+/*
 const Input = styled.input`
     width: 100%;
     border: none;
@@ -94,12 +110,12 @@ const Input = styled.input`
     margin: 0 26px;
     font-size: 18px;
 `;
-
-//Search Page
+*/
 
 const SelectedMusicBox =  styled.div`
     display: flex;
     flex-direction: column;
+    text-align: center;
 `;
 
 const SelectedMusicList = styled.div`
@@ -135,13 +151,12 @@ export default ({
 
     return (
         <Wrapper>
+            <Header />
             {action === "start" && (
                 <>
-                <TitleBox>
-                    <Title>
-                         음악 추천 서비스
-                    </Title>
-                </TitleBox>
+                <Title>
+                        음악 추천 서비스
+                </Title>
                 <CaptionBox>
                     <Caption>
                         평소 자주 듣고 좋아하던 노래를 알려주세요.
@@ -150,17 +165,15 @@ export default ({
                         당신의 음악 취향을 분석하고 새로운 노래를 추천합니다!
                     </Caption>
                 </CaptionBox>
-                <ButtonBox>
-                    <form onSubmit={changeStateToSearch} >
-                        <Button onClick={changeStateToSearch} text='시작하기' />
-                    </form>
-                </ButtonBox>
+                <form onSubmit={changeStateToSearch} >
+                    <Button onClick={changeStateToSearch} text='시작하기' />
+                </form>
                 </>
             )}
             {action === "search" && (
                 <>
                 <MusicSearchBox>
-                    <TitleBox>음악 검색</TitleBox>
+                    <Title>음악 검색</Title>
                     <InputBox>
                         <form onSubmit={handleSearchFormSubmit}>
                             <Input 
@@ -181,9 +194,9 @@ export default ({
                     </MusicListBox>
                 </MusicSearchBox>
                 <SelectedMusicBox>
-                    <TitleBox>
+                    <Title>
                         선택한 노래
-                    </TitleBox>
+                    </Title>
                     <SelectedMusicList>
                         <SelectedMusic>
                             a
@@ -191,24 +204,14 @@ export default ({
                         <SelectedMusic>
                             b
                         </SelectedMusic>
-                        <SelectedMusic>
-                            c
-                        </SelectedMusic>
-                        <SelectedMusic>
-                            d
-                        </SelectedMusic>
-                        <SelectedMusic>
-                            e
-                        </SelectedMusic>
                     </SelectedMusicList>
                 </SelectedMusicBox>
-                <ButtonBox>
-                    <form>
-                        <Button text='결과보기' />
-                    </form>
-                </ButtonBox>
+                <form>
+                    <Button text='결과보기' />
+                </form>
                 </>
             )}
+            <Footer />
         </Wrapper>
     );
 };

@@ -13,6 +13,10 @@ export default createGlobalStyle`
         color: ${props => props.theme.whiteColor};
         font-size: 14px;
     }
+    a{
+        color: white;
+        text-decoration: none;
+    }
     input:focus{
         outline: none;
     }
