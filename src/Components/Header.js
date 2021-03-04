@@ -5,8 +5,8 @@ import { CgMusic } from 'react-icons/cg';
 const Header = styled.header`
     width: 100%;
     background-color: none;
-    position: absolute;
-    top: 0;
+    //position: absolute;
+    //top: 0;
     margin-top: 10px;
     display: flex;
     justify-content: center;

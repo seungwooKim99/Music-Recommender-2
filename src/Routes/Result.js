@@ -17,8 +17,9 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 20px;
+    padding: 20px;
     justify-content: center;
+    text-align: center;
 `;
 
 const Title = styled.span`
@@ -28,9 +29,16 @@ const Title = styled.span`
     margin: 12px;
 `;
 
+const Caption = styled.span`
+    font-size: 10px;
+    font-weight: 400;
+    margin: 4px 0;
+`;
+
 const MusicFeatListBox = styled.div`
     display: flex;
     justify-content: center;
+    padding: 20px 0;
 `;
 
 const MusicFeat = styled.div`
@@ -45,20 +53,32 @@ const MusicFeat = styled.div`
     margin: 3px;
 `;
 
-const MusicList = styled.div`
+const MusicListBox = styled.div`
     ${props => props.theme.greyBox};
-    margin: 0 20px;
+    margin: 20px 0;
     display: flex;
     flex-flow: column;
+    padding: 10px;
+`;
+
+const MusicList = styled.ul`
+
+`;
+
+const MusicInfo = styled.li`
+    padding: 7px;
+    margin: 1px;
+    border: 1px solid ${props => props.theme.darkNavyColor};
+    border-radius: 4px;
 `;
 
 export default ({}) => {
     
     return (
         <Wrapper>
-            <Header />
             <Container>
                 <Title>당신의 음악 취향</Title>
+                <Caption>'songName'의 음악 특징을 이용해 당신의 취향을 분석했습니다</Caption>
                 <MusicFeatListBox>
                     <MusicFeat>Energetic</MusicFeat>
                     <MusicFeat>Dance</MusicFeat>
@@ -67,15 +87,37 @@ export default ({}) => {
                 </MusicFeatListBox>
             </Container>
             <Container>
-                <Title>새로운 추천곡</Title>
-                <MusicList>
-                    <div>a</div>
-                    <div>b</div>
-                    <div>c</div>
-                    <div>d</div>
-                </MusicList>
+                <Title>당신을 위한 추천 리스트</Title>
+                <Caption>추천곡을 클릭해서 바로 유튜브에서 들어보세요!</Caption>
+                <MusicListBox>
+                    <MusicList>
+                        <MusicInfo>
+                            The Weeknd - Reminder
+                        </MusicInfo>
+                        <MusicInfo>
+                            The Weeknd - Save Your Tears
+                        </MusicInfo>
+                        <MusicInfo>
+                            Dua Lipa - Fever
+                        </MusicInfo>
+                        <MusicInfo>
+                            Ariana Grande - Motive
+                        </MusicInfo>
+                        <MusicInfo>
+                            Ariana Grande - Touch It
+                        </MusicInfo>
+                        <MusicInfo>
+                            The Weeknd - Heartless
+                        </MusicInfo>
+                        <MusicInfo>
+                            DEAN - Instagram
+                        </MusicInfo>
+                        <MusicInfo>
+                            Maroon5 - One More Night
+                        </MusicInfo>
+                    </MusicList>
+                </MusicListBox>
             </Container>
-            <Footer />
         </Wrapper>
     );
 };

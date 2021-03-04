@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 const Container = styled.input`
     border: none;
     border-radius: 4px;
-    margin: 0 26px;
+    margin: 0 8px;
     padding: 0px 15px;
-    height: 35px;
+    height: 36px;
 `;
 
 const Input = ({ placeholder, required=true, value, onChange, type='text', className }) => (

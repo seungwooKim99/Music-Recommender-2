@@ -21,7 +21,7 @@ const ResultRoutes = () => (
     </>
 );
 
-const AppRouter = ({isSearched = true}) => {
+const AppRouter = ({isSearched = false}) => {
     return (
     <Router>
         {isSearched ? <ResultRoutes /> : <MainRoutes /> }

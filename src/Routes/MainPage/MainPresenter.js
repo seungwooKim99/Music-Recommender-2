@@ -29,9 +29,16 @@ const TitleBox = styled.div`
 `;
 */
 
-const Title = styled.span`
+const MainTitle = styled.span`
     font-size: 36px;
     font-weight: 600;
+`;
+
+const Title = styled.span`
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin: 12px;
 `;
 
 const CaptionBox = styled.div`
@@ -74,16 +81,27 @@ const Btn = styled.button`
 
 const MusicListBox = styled.div`
     ${props => props.theme.greyBox};
-    margin: 18px 24px;
-    padding: 12px;
+    margin: 20px 0;
     display: flex;
-    flex-direction: column;
+    flex-flow: column;
+    padding: 10px;
+`;
+
+const MusicList = styled.ul`
+
+`;
+
+const MusicInfo = styled.li`
+    padding: 7px;
+    margin: 1px;
 `;
 
 const MusicSearchBox = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding: 20px;
 `;
 
 /*
@@ -113,9 +131,11 @@ const Input = styled.input`
 */
 
 const SelectedMusicBox =  styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding: 20px;
 `;
 
 const SelectedMusicList = styled.div`
@@ -136,6 +156,12 @@ const SelectedMusic = styled.div`
     align-items: center;
 `;
 
+//
+
+const SearchBtn = styled(Input)`
+
+`;
+
 export default ({
     action,
     setAction,
@@ -151,12 +177,11 @@ export default ({
 
     return (
         <Wrapper>
-            <Header />
             {action === "start" && (
                 <>
-                <Title>
+                <MainTitle>
                         음악 추천 서비스
-                </Title>
+                </MainTitle>
                 <CaptionBox>
                     <Caption>
                         평소 자주 듣고 좋아하던 노래를 알려주세요.
@@ -190,28 +215,21 @@ export default ({
                         </form>
                     </InputBox>
                     <MusicListBox>
-                        <div>temp</div>
+                        {musicL === '' ? 
+                        <div></div> :
+                        <MusicList>
+                            {musicL.map(music => (
+                                <MusicInfo key={music.id}>{music.artists} - {music.name}</MusicInfo>
+                            ))}
+                        </MusicList>
+                        }
                     </MusicListBox>
                 </MusicSearchBox>
-                <SelectedMusicBox>
-                    <Title>
-                        선택한 노래
-                    </Title>
-                    <SelectedMusicList>
-                        <SelectedMusic>
-                            a
-                        </SelectedMusic>
-                        <SelectedMusic>
-                            b
-                        </SelectedMusic>
-                    </SelectedMusicList>
-                </SelectedMusicBox>
                 <form>
                     <Button text='결과보기' />
                 </form>
                 </>
             )}
-            <Footer />
         </Wrapper>
     );
 };

@@ -38,6 +38,7 @@ export default () => {
         startSearch()
             .then((response) => {
                 console.log(response.data);
+                setMusicL(response.data);
             })
             .catch(err => console.log(err));
 

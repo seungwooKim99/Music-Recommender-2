@@ -6,8 +6,6 @@ import { Github, Instagram } from './Icons';
 const Footer = styled.footer`
     width: 100%;
     background-color: ${props => props.theme.darkNavyColor};
-    position: absolute;
-    bottom: 0;
     padding: 16px 0;
     display: flex;
     flex-direction: column;
