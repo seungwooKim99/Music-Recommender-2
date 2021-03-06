@@ -6,6 +6,7 @@ export default () => {
     const [action, setAction] = useState('start');
     const [musicL, setMusicL] = useState('');
     const [songName, setSongName] = useState('');
+    const [selectedSongId, setSelectedSongId] = useState('');
 
     const callApi = async () => {
         const response = await fetch('/api/musicL');
@@ -65,6 +66,30 @@ export default () => {
     }
     */
 
+    const handleSelectedMusic = (e) => {
+        console.log(e.target.id)
+        let songId = e.target.id
+        setSelectedSongId(songId);
+    }
+
+    const requestResult = () => {
+        const url = '/api/musicL_';
+        const formData = new FormData();
+        formData.append('songId', selectedSongId);
+        return post(url, formData);
+    }
+
+    const handleResultFormSubmit = (e) => {
+        e.preventDefault();
+        if (selectedSongId != '') {
+            requestResult()
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch(err => console.log(err));
+        }
+    }
+
     return (
         <MainPresenter
             action={action}
@@ -77,6 +102,9 @@ export default () => {
             setSongName={setSongName}
             handleValueChange={handleValueChange}
             changeStateToSearch={changeStateToSearch}
+            handleSelectedMusic={handleSelectedMusic}
+            selectedSongId={selectedSongId}
+            handleResultFormSubmit={handleResultFormSubmit}
         />
     );
 };

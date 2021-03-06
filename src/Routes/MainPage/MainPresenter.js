@@ -94,6 +94,10 @@ const MusicList = styled.ul`
 const MusicInfo = styled.li`
     padding: 7px;
     margin: 1px;
+    border-radius: 4px;
+    &:hover {
+        background-color: ${props => props.theme.darkNavyColor};
+    }
 `;
 
 const MusicSearchBox = styled.div`
@@ -172,9 +176,11 @@ export default ({
     songName,
     setSongName,
     handleValueChange,
-    changeStateToSearch
+    changeStateToSearch,
+    handleSelectedMusic,
+    selectedSongId,
+    handleResultFormSubmit
 }) => {
-
     return (
         <Wrapper>
             {action === "start" && (
@@ -214,18 +220,31 @@ export default ({
                             />
                         </form>
                     </InputBox>
+                    {musicL === '' ?
+                    <div>No results</div> : 
                     <MusicListBox>
-                        {musicL === '' ? 
-                        <div></div> :
                         <MusicList>
-                            {musicL.map(music => (
-                                <MusicInfo key={music.id}>{music.artists} - {music.name}</MusicInfo>
+                        {musicL.map(music => (
+                                <MusicInfo 
+                                    key={music.id}
+                                    id={music.song_id}
+                                    onClick={handleSelectedMusic}
+                                >
+                                    {music.artists} - {music.name}
+                                </MusicInfo>
                             ))}
                         </MusicList>
-                        }
                     </MusicListBox>
+                    }
+                    {selectedSongId === '' ?
+                    <div></div> :
+                    <>
+                    <Title>선택한 곡</Title>
+                    <span>{selectedSongId}</span>
+                    </>
+                    }
                 </MusicSearchBox>
-                <form>
+                <form onSubmit={handleResultFormSubmit}>
                     <Button text='결과보기' />
                 </form>
                 </>
