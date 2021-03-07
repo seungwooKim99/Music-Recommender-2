@@ -179,7 +179,9 @@ export default ({
     changeStateToSearch,
     handleSelectedMusic,
     selectedSongId,
-    handleResultFormSubmit
+    handleResultFormSubmit,
+    setFinalResult,
+    finalResult
 }) => {
     return (
         <Wrapper>
@@ -247,6 +249,14 @@ export default ({
                 <form onSubmit={handleResultFormSubmit}>
                     <Button text='결과보기' />
                 </form>
+                {finalResult === '' ? 
+                <>
+                <span>nothing</span>
+                </> : 
+                <>
+                <div>{finalResult[finalResult.length - 1][1]}</div>
+                </>
+                }
                 </>
             )}
         </Wrapper>

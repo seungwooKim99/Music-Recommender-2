@@ -7,6 +7,9 @@ export default () => {
     const [musicL, setMusicL] = useState('');
     const [songName, setSongName] = useState('');
     const [selectedSongId, setSelectedSongId] = useState('');
+    const [finalResult, setFinalResult] = useState('');
+    const [analysisData, setAnalysisData] = useState('');
+    const [recommendedData, setRecommendedData] = useState('');
 
     const callApi = async () => {
         const response = await fetch('/api/musicL');
@@ -32,6 +35,20 @@ export default () => {
         const formData = new FormData();
         formData.append('songName', songName);
         return post(url, formData);
+    }
+
+    const organizeReponseData = () => {
+        let featList = [];
+        let featListLength = Object.keys(finalResult[finalResult.length - 1]).length;
+        let featDict = finalResult[finalResult.length - 1]
+
+        for (var i = 1 ; i <= featListLength ; i++) {
+            featList.push(featDict[i]);
+        };
+
+        console.log(featList);
+        setAnalysisData(featList);
+        return 0;
     }
 
     const handleSearchFormSubmit = (e) => {
@@ -85,6 +102,8 @@ export default () => {
             requestResult()
                 .then((response) => {
                     console.log(response.data);
+                    setFinalResult(response.data);
+                    organizeReponseData();
                 })
                 .catch(err => console.log(err));
         }
@@ -105,6 +124,8 @@ export default () => {
             handleSelectedMusic={handleSelectedMusic}
             selectedSongId={selectedSongId}
             handleResultFormSubmit={handleResultFormSubmit}
+            setFinalResult={setFinalResult}
+            finalResult={finalResult}
         />
     );
 };
