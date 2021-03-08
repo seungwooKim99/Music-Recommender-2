@@ -180,8 +180,8 @@ export default ({
     handleSelectedMusic,
     selectedSongId,
     handleResultFormSubmit,
-    setFinalResult,
-    finalResult
+    analysisData,
+    recommendData
 }) => {
     return (
         <Wrapper>
@@ -249,12 +249,12 @@ export default ({
                 <form onSubmit={handleResultFormSubmit}>
                     <Button text='결과보기' />
                 </form>
-                {finalResult === '' ? 
+                {analysisData === '' ? 
                 <>
                 <span>nothing</span>
                 </> : 
                 <>
-                <div>{finalResult[finalResult.length - 1][1]}</div>
+                <div>{Object.keys(analysisData).length}</div>
                 </>
                 }
                 </>

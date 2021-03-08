@@ -72,7 +72,10 @@ const MusicInfo = styled.li`
     border-radius: 4px;
 `;
 
-export default ({}) => {
+export default ({
+    isResultFetched,
+    setIsResultFetched
+}) => {
     
     return (
         <Wrapper>
